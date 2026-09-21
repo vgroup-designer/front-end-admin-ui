@@ -1,11 +1,13 @@
 import { tool } from '@anthropic-ai/claude-agent-sdk';
 import { z } from 'zod';
-import { shopifyRequest } from '../shopify/client.js';
+import { shopifyRequest, shopifyRequestAll } from '../shopify/client.js';
 import { matchByName } from '../shopify/nameMatching.js';
 
 async function findProductByName(name) {
-  const data = await shopifyRequest(`products.json?title=${encodeURIComponent(name)}&fields=id,title,variants`);
-  return matchByName(data.products, name, (product) => product.title);
+  // Shopify's REST `title` filter isn't honored by the API, so fetch every
+  // product and let matchByName resolve it client-side.
+  const products = await shopifyRequestAll('products.json?limit=250&fields=id,title,variants', 'products');
+  return matchByName(products, name, (product) => product.title);
 }
 
 async function findLocationByName(name) {

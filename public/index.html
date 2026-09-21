@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="shopify-api-key" content="%SHOPIFY_API_KEY%" />
+  <script src="https://cdn.shopify.com/shopifycloud/app-bridge.js"></script>
+  <title>Shopify Ops Agent</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Shopify Ops Agent</h1>
+      <span id="status" class="status">connecting…</span>
+    </header>
+
+    <main id="log" class="log" aria-live="polite"></main>
+
+    <form id="composer" class="composer">
+      <input
+        id="input"
+        type="text"
+        autocomplete="off"
+        placeholder="Ask about inventory or order status…"
+      />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
