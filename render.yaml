@@ -2,7 +2,7 @@ services:
   - type: web
     name: shopify-admin-agent
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm install
     startCommand: npm run web
     envVars:
