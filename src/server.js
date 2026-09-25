@@ -100,11 +100,13 @@ async function handleChat(req, res) {
     return;
   }
 
-  inputQueue.push({
+  const userMessage = {
     type: 'user',
     message: { role: 'user', content: text },
     parent_tool_use_id: null,
-  });
+  };
+  broadcast(userMessage);
+  inputQueue.push(userMessage);
   res.writeHead(202).end();
 }
 
